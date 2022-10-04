@@ -15,25 +15,25 @@ public interface TipoTallaDAO {
 	 * metodo encargado de crear un TipoTalla en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:58:10 PM <br>
 	 *
-	 * @param TipoTalla
+	 * @param tipoTalla
 	 */
-	void insert(TipoTallaEntity TipoTalla);
+	void insert(TipoTallaEntity tipoTalla);
 
 	/**
 	 * metodo encargado de actualizar un TipoTalla en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:58:53 PM <br>
 	 *
-	 * @param TipoTalla
+	 * @param tipoTalla
 	 */
-	void update(TipoTallaEntity TipoTalla);
+	void update(TipoTallaEntity tipoTalla);
 
 	/**
 	 * metodo encargado de eliminar un TipoTalla en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:59:21 PM <br>
 	 *
-	 * @param TipoTalla
+	 * @param tipoTalla
 	 */
-	void delete(TipoTallaEntity TipoTalla);
+	void delete(TipoTallaEntity tipoTalla);
 
 	/**
 	 * metodo encargado de encontrar un TipoTalla en la BD <br>

@@ -15,25 +15,25 @@ public interface TipoGeneroDAO {
 	 * metodo encargado de crear un TipoGenero en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:58:10 PM <br>
 	 *
-	 * @param TipoGenero
+	 * @param tipoGenero
 	 */
-	void insert(TipoGeneroEntity TipoGenero);
+	void insert(TipoGeneroEntity tipoGenero);
 
 	/**
 	 * metodo encargado de actualizar un TipoGenero en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:58:53 PM <br>
 	 *
-	 * @param TipoGenero
+	 * @param tipoGenero
 	 */
-	void update(TipoGeneroEntity TipoGenero);
+	void update(TipoGeneroEntity tipoGenero);
 
 	/**
 	 * metodo encargado de eliminar un TipoGenero en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:59:21 PM <br>
 	 *
-	 * @param TipoGenero
+	 * @param tipoGenero
 	 */
-	void delete(TipoGeneroEntity TipoGenero);
+	void delete(TipoGeneroEntity tipoGenero);
 
 	/**
 	 * metodo encargado de encontrar un TipoGenero en la BD <br>

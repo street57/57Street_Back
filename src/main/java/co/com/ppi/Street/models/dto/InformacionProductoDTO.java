@@ -4,13 +4,17 @@
 package co.com.ppi.Street.models.dto;
 
 import java.io.Serializable;
+import java.util.List;
+
+import co.com.ppi.Street.models.entity.DetalleProductoEntity;
+import co.com.ppi.Street.models.entity.ImagenProductoEntity;
 
 /**
  * TODO: descripción <br>
  * Creado el Sep 29, 2022 a las 12:48:32 PM <br>
  *
  */
-public class DetalleProductoDTO implements Serializable{
+public class InformacionProductoDTO implements Serializable{
 	
 	private Long idDetalleProducto;
 	private Long idProducto;
@@ -18,6 +22,9 @@ public class DetalleProductoDTO implements Serializable{
 	private Long idTipoColor;
 	private Integer idTipoGenero;
 	private Integer cantidad;
+	private List<ImagenProductoEntity> listaImagen;
+	private List<DetalleProductoEntity> detalleProducto;
+	
 	/**
 	 * @return the idDetalleProducto
 	 */
@@ -89,6 +96,30 @@ public class DetalleProductoDTO implements Serializable{
 	 */
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
+	}
+	/**
+	 * @return the listaImagen
+	 */
+	public List<ImagenProductoEntity> getListaImagen() {
+		return listaImagen;
+	}
+	/**
+	 * @param listaImagen the listaImagen to set
+	 */
+	public void setListaImagen(List<ImagenProductoEntity> listaImagen) {
+		this.listaImagen = listaImagen;
+	}
+	/**
+	 * @return the detalleProducto
+	 */
+	public List<DetalleProductoEntity> getDetalleProducto() {
+		return detalleProducto;
+	}
+	/**
+	 * @param detalleProducto the detalleProducto to set
+	 */
+	public void setDetalleProducto(List<DetalleProductoEntity> detalleProducto) {
+		this.detalleProducto = detalleProducto;
 	}
 	
 	

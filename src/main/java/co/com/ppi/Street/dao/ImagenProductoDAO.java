@@ -3,6 +3,8 @@
  */
 package co.com.ppi.Street.dao;
 
+import java.util.List;
+
 import co.com.ppi.Street.models.entity.ImagenProductoEntity;
 
 /**
@@ -15,25 +17,25 @@ public interface ImagenProductoDAO {
 	 * metodo encargado de crear un ImagenProducto en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:58:10 PM <br>
 	 *
-	 * @param ImagenProducto
+	 * @param imagenProducto
 	 */
-	void insert(ImagenProductoEntity ImagenProducto);
+	void insert(ImagenProductoEntity imagenProducto);
 
 	/**
 	 * metodo encargado de actualizar un ImagenProducto en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:58:53 PM <br>
 	 *
-	 * @param ImagenProducto
+	 * @param imagenProducto
 	 */
-	void update(ImagenProductoEntity ImagenProducto);
+	void update(ImagenProductoEntity imagenProducto);
 
 	/**
 	 * metodo encargado de eliminar un ImagenProducto en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:59:21 PM <br>
 	 *
-	 * @param ImagenProducto
+	 * @param imagenProducto
 	 */
-	void delete(ImagenProductoEntity ImagenProducto);
+	void delete(ImagenProductoEntity imagenProducto);
 
 	/**
 	 * metodo encargado de encontrar un ImagenProducto en la BD <br>
@@ -43,4 +45,6 @@ public interface ImagenProductoDAO {
 	 * @return
 	 */
 	ImagenProductoEntity findByPK(Long idImagenProducto);
+	
+	List<ImagenProductoEntity> findAllByIdProducto(Long idProducto);
 }

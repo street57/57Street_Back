@@ -22,17 +22,17 @@ public class TipoColorEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_TIPO_COLOR")
-	private Long idColor;
+	private Long idTipoColor;
 
 	@Column(name = "NOMBRE")
 	private String nombre;
 
-	public Long getIdColor() {
-		return idColor;
+	public Long getIdTipoColor() {
+		return idTipoColor;
 	}
 
-	public void setIdColor(Long idColor) {
-		this.idColor = idColor;
+	public void setIdTipoColor(Long idTipoColor) {
+		this.idTipoColor = idTipoColor;
 	}
 
 	public String getNombre() {

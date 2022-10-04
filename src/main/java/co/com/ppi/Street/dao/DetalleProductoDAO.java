@@ -3,6 +3,8 @@
  */
 package co.com.ppi.Street.dao;
 
+import java.util.List;
+
 import co.com.ppi.Street.models.entity.DetalleProductoEntity;
 
 /**
@@ -16,25 +18,25 @@ public interface DetalleProductoDAO {
 	 * metodo encargado de crear un DetalleProducto en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:58:10 PM <br>
 	 *
-	 * @param DetalleProducto
+	 * @param detalleProducto
 	 */
-	void insert(DetalleProductoEntity DetalleProducto);
+	void insert(DetalleProductoEntity detalleProducto);
 
 	/**
 	 * metodo encargado de actualizar un DetalleProducto en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:58:53 PM <br>
 	 *
-	 * @param DetalleProducto
+	 * @param detalleProducto
 	 */
-	void update(DetalleProductoEntity DetalleProducto);
+	void update(DetalleProductoEntity detalleProducto);
 
 	/**
 	 * metodo encargado de eliminar un DetalleProducto en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:59:21 PM <br>
 	 *
-	 * @param DetalleProducto
+	 * @param detalleProducto
 	 */
-	void delete(DetalleProductoEntity DetalleProducto);
+	void delete(DetalleProductoEntity detalleProducto);
 
 	/**
 	 * metodo encargado de encontrar un DetalleProducto en la BD <br>
@@ -44,4 +46,13 @@ public interface DetalleProductoDAO {
 	 * @return
 	 */
 	DetalleProductoEntity findByPK(Long idDetalleProducto);
+	
+	/**
+	 * Encuentra el detalleProducto por el IdProducto <br>
+	 * Creado el Oct 2, 2022 a las 2:48:26 PM <br>
+	 *
+	 * @param idProducto
+	 * @return
+	 */
+	List<DetalleProductoEntity> findByIdProducto (Long idProducto);
 }

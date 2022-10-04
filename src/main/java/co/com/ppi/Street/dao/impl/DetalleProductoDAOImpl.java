@@ -3,7 +3,14 @@
  */
 package co.com.ppi.Street.dao.impl;
 
+import java.util.Collections;
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
+
+import org.springframework.stereotype.Repository;
 
 import co.com.ppi.Street.dao.DetalleProductoDAO;
 import co.com.ppi.Street.models.entity.DetalleProductoEntity;
@@ -13,6 +20,7 @@ import co.com.ppi.Street.models.entity.DetalleProductoEntity;
  * Creado el Sep 26, 2022 a las 10:30:01 PM <br>
  *
  */
+@Repository
 public class DetalleProductoDAOImpl implements DetalleProductoDAO{
 	
 	private EntityManager entityManager;
@@ -21,27 +29,25 @@ public class DetalleProductoDAOImpl implements DetalleProductoDAO{
 	 * @see co.com.ppi.Street.dao.DetalleProductoDAO#insert(co.com.ppi.Street.models.entity.DetalleProductoEntity)
 	 */
 	@Override
-	public void insert(DetalleProductoEntity DetalleProducto) {
-		// TODO Auto-generated method stub
-		
+	public void insert(DetalleProductoEntity detalleProducto) {
+		this.entityManager.persist(detalleProducto);
 	}
 
 	/* (non-Javadoc)
 	 * @see co.com.ppi.Street.dao.DetalleProductoDAO#update(co.com.ppi.Street.models.entity.DetalleProductoEntity)
 	 */
 	@Override
-	public void update(DetalleProductoEntity DetalleProducto) {
-		// TODO Auto-generated method stub
-		
+	public void update(DetalleProductoEntity detalleProducto) {
+		this.entityManager.merge(detalleProducto);
+		this.entityManager.flush();
 	}
 
 	/* (non-Javadoc)
 	 * @see co.com.ppi.Street.dao.DetalleProductoDAO#delete(co.com.ppi.Street.models.entity.DetalleProductoEntity)
 	 */
 	@Override
-	public void delete(DetalleProductoEntity DetalleProducto) {
-		// TODO Auto-generated method stub
-		
+	public void delete(DetalleProductoEntity detalleProducto) {
+		this.entityManager.remove(detalleProducto);
 	}
 
 	/* (non-Javadoc)
@@ -49,8 +55,24 @@ public class DetalleProductoDAOImpl implements DetalleProductoDAO{
 	 */
 	@Override
 	public DetalleProductoEntity findByPK(Long idDetalleProducto) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.entityManager.find(DetalleProductoEntity.class, idDetalleProducto);
+	}
+
+	/* (non-Javadoc)
+	 * @see co.com.ppi.Street.dao.DetalleProductoDAO#findByIdProducto(java.lang.Long)
+	 */
+	@Override
+	public List<DetalleProductoEntity> findByIdProducto(Long idProducto) {
+		Query query = this.entityManager.createNativeQuery(
+				"SELECT * FROM DETALLE_PRODUCTO WHERE ID_PRODUCTO = ?1", 
+				DetalleProductoEntity.class);
+		query.setParameter(1, idProducto);
+		try {
+			return (List<DetalleProductoEntity>) query.getResultList();
+		} catch (NoResultException e) {
+			return Collections.emptyList();
+		}
+		
 	}
 	
 	

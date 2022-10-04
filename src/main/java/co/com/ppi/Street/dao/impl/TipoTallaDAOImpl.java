@@ -3,6 +3,11 @@
  */
 package co.com.ppi.Street.dao.impl;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+
 import co.com.ppi.Street.dao.TipoTallaDAO;
 import co.com.ppi.Street.models.entity.TipoTallaEntity;
 
@@ -11,33 +16,35 @@ import co.com.ppi.Street.models.entity.TipoTallaEntity;
  * Creado el Sep 26, 2022 a las 10:50:19 PM <br>
  *
  */
+@Repository
 public class TipoTallaDAOImpl implements TipoTallaDAO {
 
+	@PersistenceContext()
+	private EntityManager entityManager;
+	
 	/* (non-Javadoc)
 	 * @see co.com.ppi.Street.dao.TipoTallaDAO#insert(co.com.ppi.Street.models.entity.TipoTallaEntity)
 	 */
 	@Override
-	public void insert(TipoTallaEntity TipoTalla) {
-		// TODO Auto-generated method stub
-		
+	public void insert(TipoTallaEntity tipoTalla) {
+		this.entityManager.persist(tipoTalla);
 	}
 
 	/* (non-Javadoc)
 	 * @see co.com.ppi.Street.dao.TipoTallaDAO#update(co.com.ppi.Street.models.entity.TipoTallaEntity)
 	 */
 	@Override
-	public void update(TipoTallaEntity TipoTalla) {
-		// TODO Auto-generated method stub
-		
+	public void update(TipoTallaEntity tipoTalla) {
+		this.entityManager.merge(tipoTalla);
+		this.entityManager.flush();
 	}
 
 	/* (non-Javadoc)
 	 * @see co.com.ppi.Street.dao.TipoTallaDAO#delete(co.com.ppi.Street.models.entity.TipoTallaEntity)
 	 */
 	@Override
-	public void delete(TipoTallaEntity TipoTalla) {
-		// TODO Auto-generated method stub
-		
+	public void delete(TipoTallaEntity tipoTalla) {
+		this.entityManager.remove(tipoTalla);
 	}
 
 	/* (non-Javadoc)
@@ -45,8 +52,7 @@ public class TipoTallaDAOImpl implements TipoTallaDAO {
 	 */
 	@Override
 	public TipoTallaEntity findByPK(Long idTipoTalla) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.entityManager.find(TipoTallaEntity.class, idTipoTalla);
 	}
 
 }

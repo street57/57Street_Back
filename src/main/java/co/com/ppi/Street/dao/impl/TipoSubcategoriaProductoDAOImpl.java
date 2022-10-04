@@ -3,6 +3,11 @@
  */
 package co.com.ppi.Street.dao.impl;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+
 import co.com.ppi.Street.dao.TipoSubcategoriaProductoDAO;
 import co.com.ppi.Street.models.entity.TipoSubcategoriaProductoEntity;
 
@@ -11,15 +16,18 @@ import co.com.ppi.Street.models.entity.TipoSubcategoriaProductoEntity;
  * Creado el Sep 26, 2022 a las 10:49:41 PM <br>
  *
  */
+@Repository
 public class TipoSubcategoriaProductoDAOImpl implements TipoSubcategoriaProductoDAO {
 
+	@PersistenceContext()
+	private EntityManager entityManager;
+	
 	/* (non-Javadoc)
 	 * @see co.com.ppi.Street.dao.TipoSubcategoriaProductoDAO#insert(co.com.ppi.Street.models.entity.TipoSubcategoriaProductoEntity)
 	 */
 	@Override
 	public void insert(TipoSubcategoriaProductoEntity TipoSubcategoriaProducto) {
-		// TODO Auto-generated method stub
-		
+		this.entityManager.persist(TipoSubcategoriaProducto);
 	}
 
 	/* (non-Javadoc)
@@ -27,8 +35,8 @@ public class TipoSubcategoriaProductoDAOImpl implements TipoSubcategoriaProducto
 	 */
 	@Override
 	public void update(TipoSubcategoriaProductoEntity TipoSubcategoriaProducto) {
-		// TODO Auto-generated method stub
-		
+		this.entityManager.merge(TipoSubcategoriaProducto);
+		this.entityManager.flush();
 	}
 
 	/* (non-Javadoc)
@@ -36,8 +44,7 @@ public class TipoSubcategoriaProductoDAOImpl implements TipoSubcategoriaProducto
 	 */
 	@Override
 	public void delete(TipoSubcategoriaProductoEntity TipoSubcategoriaProducto) {
-		// TODO Auto-generated method stub
-		
+		this.entityManager.remove(TipoSubcategoriaProducto);
 	}
 
 	/* (non-Javadoc)
@@ -45,8 +52,7 @@ public class TipoSubcategoriaProductoDAOImpl implements TipoSubcategoriaProducto
 	 */
 	@Override
 	public TipoSubcategoriaProductoEntity findByPK(Long idTipoSubcategoriaProducto) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.entityManager.find(TipoSubcategoriaProductoEntity.class, idTipoSubcategoriaProducto);
 	}
 
 }

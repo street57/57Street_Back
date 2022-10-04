@@ -15,25 +15,25 @@ public interface TipoSubcategoriaProductoDAO {
 	 * metodo encargado de crear un TipoSubcategoriaProducto en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:58:10 PM <br>
 	 *
-	 * @param TipoSubcategoriaProducto
+	 * @param tipoSubcategoriaProducto
 	 */
-	void insert(TipoSubcategoriaProductoEntity TipoSubcategoriaProducto);
+	void insert(TipoSubcategoriaProductoEntity tipoSubcategoriaProducto);
 
 	/**
 	 * metodo encargado de actualizar un TipoSubcategoriaProducto en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:58:53 PM <br>
 	 *
-	 * @param TipoSubcategoriaProducto
+	 * @param tipoSubcategoriaProducto
 	 */
-	void update(TipoSubcategoriaProductoEntity TipoSubcategoriaProducto);
+	void update(TipoSubcategoriaProductoEntity tipoSubcategoriaProducto);
 
 	/**
 	 * metodo encargado de eliminar un TipoSubcategoriaProducto en BD <br>
 	 * Creado el Aug 28, 2022 a las 7:59:21 PM <br>
 	 *
-	 * @param TipoSubcategoriaProducto
+	 * @param tipoSubcategoriaProducto
 	 */
-	void delete(TipoSubcategoriaProductoEntity TipoSubcategoriaProducto);
+	void delete(TipoSubcategoriaProductoEntity tipoSubcategoriaProducto);
 
 	/**
 	 * metodo encargado de encontrar un TipoSubcategoriaProducto  en la BD <br>
