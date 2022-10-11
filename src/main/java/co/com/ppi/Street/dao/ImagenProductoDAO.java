@@ -46,5 +46,23 @@ public interface ImagenProductoDAO {
 	 */
 	ImagenProductoEntity findByPK(Long idImagenProducto);
 	
-	List<ImagenProductoEntity> findAllByIdProducto(Long idProducto);
+	/**
+	 * metodo encargado de listar las imagenProducto por idProducto<br>
+	 * Creado el Oct 6, 2022 a las 3:00:04 PM <br>
+	 *
+	 * @param idProducto
+	 * @return
+	 */
+	ImagenProductoEntity findByIdProducto(Long idProducto);
+	
+	/**
+	 * metodo encargado de listar las imagenProducto por idTipoColor<br>
+	 * Creado el Oct 6, 2022 a las 3:00:45 PM <br>
+	 *
+	 * @param idTipoColor
+	 * @return
+	 */
+	ImagenProductoEntity findByIdTipoColor(Long idTipoColor);
+	
+	
 }

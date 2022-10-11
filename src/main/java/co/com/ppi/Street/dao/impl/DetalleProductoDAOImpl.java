@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,7 @@ import co.com.ppi.Street.models.entity.DetalleProductoEntity;
 @Repository
 public class DetalleProductoDAOImpl implements DetalleProductoDAO{
 	
+	@PersistenceContext()
 	private EntityManager entityManager;
 
 	/* (non-Javadoc)
@@ -62,17 +64,65 @@ public class DetalleProductoDAOImpl implements DetalleProductoDAO{
 	 * @see co.com.ppi.Street.dao.DetalleProductoDAO#findByIdProducto(java.lang.Long)
 	 */
 	@Override
-	public List<DetalleProductoEntity> findByIdProducto(Long idProducto) {
+	public DetalleProductoEntity findByIdProducto(Long idProducto) {
 		Query query = this.entityManager.createNativeQuery(
 				"SELECT * FROM DETALLE_PRODUCTO WHERE ID_PRODUCTO = ?1", 
 				DetalleProductoEntity.class);
 		query.setParameter(1, idProducto);
 		try {
-			return (List<DetalleProductoEntity>) query.getResultList();
+			return (DetalleProductoEntity) query.getSingleResult();
 		} catch (NoResultException e) {
-			return Collections.emptyList();
+			return null;
 		}
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see co.com.ppi.Street.dao.DetalleProductoDAO#findAllByIdTipoColor(java.lang.Long)
+	 */
+	@Override
+	public DetalleProductoEntity findByIdTipoColor(Long idTipoColor) {
+		Query query = this.entityManager.createNativeQuery(
+				"SELECT * FROM DETALLE_PRODUCTO WHERE ID_TIPO_COLOR = ?1", 
+				DetalleProductoEntity.class);
+		query.setParameter(1, idTipoColor);
+		try {
+			return (DetalleProductoEntity) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see co.com.ppi.Street.dao.DetalleProductoDAO#findAllByIdTipoTalla(java.lang.Long)
+	 */
+	@Override
+	public DetalleProductoEntity findByIdTipoTalla(Long idTipoTalla) {
+		Query query = this.entityManager.createNativeQuery(
+				"SELECT * FROM DETALLE_PRODUCTO WHERE ID_TIPO_TALLA = ?1", 
+				DetalleProductoEntity.class);
+		query.setParameter(1, idTipoTalla);
+		try {
+			return (DetalleProductoEntity) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see co.com.ppi.Street.dao.DetalleProductoDAO#findAllByIdTipoGenero(java.lang.Long)
+	 */
+	@Override
+	public DetalleProductoEntity findByIdTipoGenero(Long idTipoGenero) {
+		Query query = this.entityManager.createNativeQuery(
+				"SELECT * FROM DETALLE_PRODUCTO WHERE ID_TIPO_GENERO = ?1", 
+				DetalleProductoEntity.class);
+		query.setParameter(1, idTipoGenero);
+		try {
+			return (DetalleProductoEntity) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 	
 	

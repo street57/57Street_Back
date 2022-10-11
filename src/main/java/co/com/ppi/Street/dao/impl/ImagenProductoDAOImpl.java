@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -24,6 +25,7 @@ import co.com.ppi.Street.models.entity.ImagenProductoEntity;
 @Repository
 public class ImagenProductoDAOImpl implements ImagenProductoDAO{
 
+	@PersistenceContext()
 	private EntityManager entityManager;
 	
 	/* (non-Javadoc)
@@ -63,15 +65,31 @@ public class ImagenProductoDAOImpl implements ImagenProductoDAO{
 	 * @see co.com.ppi.Street.dao.ImagenProductoDAO#findAllByIdProducto(java.lang.Long)
 	 */
 	@Override
-	public List<ImagenProductoEntity> findAllByIdProducto(Long idProducto) {
+	public ImagenProductoEntity findByIdProducto(Long idProducto) {
 		Query query = this.entityManager.createNativeQuery(
 				"SELECT * FROM IMAGEN_PRODUCTO WHERE ID_PRODUCTO = ?1", 
 				DetalleProductoEntity.class);
 		query.setParameter(1, idProducto);
 		try {
-			return (List<ImagenProductoEntity>) query.getResultList();
+			return (ImagenProductoEntity) query.getSingleResult();
 		} catch (NoResultException e) {
-			return Collections.emptyList();
+			return null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see co.com.ppi.Street.dao.ImagenProductoDAO#findAllByIdTipoColor(java.lang.Long)
+	 */
+	@Override
+	public ImagenProductoEntity findByIdTipoColor(Long idTipoColor) {
+		Query query = this.entityManager.createNativeQuery(
+				"SELECT * FROM DETALLE_PRODUCTO WHERE ID_TIPO_COLOR = ?1", 
+				DetalleProductoEntity.class);
+		query.setParameter(1, idTipoColor);
+		try {
+			return (ImagenProductoEntity) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
 		}
 	}
 

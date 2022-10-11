@@ -85,6 +85,14 @@ public class TipoColorManagerImpl implements TipoColorManager{
 		this.tipoColorDAO.delete(tipoColorExistente);
 		return Response.status(Response.Status.OK).build();
 	}
+
+	/* (non-Javadoc)
+	 * @see co.com.ppi.Street.manager.TipoColorManager#findByNombre(java.lang.String)
+	 */
+	@Override
+	public TipoColorEntity findByNombre(String nombreColor) {
+		return this.tipoColorDAO.findByNombre(nombreColor);
+	}
 	
 	
 

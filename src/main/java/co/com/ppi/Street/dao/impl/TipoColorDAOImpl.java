@@ -59,7 +59,7 @@ public class TipoColorDAOImpl implements TipoColorDAO {
 	@Override
 	public TipoColorEntity findByNombre(String nombreColor) {
 		Query query = this.entityManager.createNativeQuery(
-				"SELECT * FROM TIPO_COLOR WHERE NOMBRE = ?1", 
+				"SELECT * FROM TIPO_COLOR WHERE UPPER(NOMBRE) = UPPER(?1)", 
 				TipoColorEntity.class);
 		query.setParameter(1, nombreColor);
 		try {

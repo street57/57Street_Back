@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import co.com.ppi.Street.models.dto.DetalleProductoInDTO;
+
 @Entity
 @Table(name = "PRODUCTO")
 public class ProductoEntity {
@@ -26,7 +28,7 @@ public class ProductoEntity {
 	private Double precio;
 
 	@Column(name = "ACTIVO")
-	private Boolean activate;
+	private String activo;
 
 	@Column(name = "ID_TIPO_SUBCATEGORIA_PRODUCTO")
 	private Long idTipoSubcategoriaProducto;
@@ -63,12 +65,35 @@ public class ProductoEntity {
 		this.precio = precio;
 	}
 
-	public Boolean getActivate() {
-		return activate;
+	/**
+	 * @return the activo
+	 */
+	public String getActivo() {
+		return activo;
 	}
 
-	public void setActivate(Boolean activate) {
-		this.activate = activate;
+	/**
+	 * @param activo the activo to set
+	 */
+	public void setActivo(String activo) {
+		this.activo = activo;
 	}
+
+	/**
+	 * @return the idTipoSubcategoriaProducto
+	 */
+	public Long getIdTipoSubcategoriaProducto() {
+		return idTipoSubcategoriaProducto;
+	}
+
+	/**
+	 * @param idTipoSubcategoriaProducto the idTipoSubcategoriaProducto to set
+	 */
+	public void setIdTipoSubcategoriaProducto(Long idTipoSubcategoriaProducto) {
+		this.idTipoSubcategoriaProducto = idTipoSubcategoriaProducto;
+	}
+
+
+
 
 }

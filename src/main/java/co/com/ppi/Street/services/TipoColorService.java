@@ -38,6 +38,7 @@ public class TipoColorService {
 	private TipoColorManager tipoColorManager;
 	
 	@POST
+	@Path("/Insert")
 	@ApiOperation(value = "/", notes = "Registra color nuevo")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -55,7 +56,7 @@ public class TipoColorService {
 	
 	@DELETE
 	@Path("/delete/{idTipoColor}")
-	@ApiOperation(value = "/", notes = "Registra color nuevo")
+	@ApiOperation(value = "/", notes = "Elimina color")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response delete(@PathParam ("idTipoColor") Long idTipoColor) {
 		return this.tipoColorManager.delete(idTipoColor);

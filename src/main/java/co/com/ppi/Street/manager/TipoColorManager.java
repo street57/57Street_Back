@@ -50,5 +50,20 @@ public interface TipoColorManager  {
 	 */
 	TipoColorEntity findByPK(Long idTipoColor);
 	
+	/**
+	 * Se encuentra el tipo color por el nombre<br>
+	 * Creado el Oct 6, 2022 a las 4:12:36 PM <br>
+	 *
+	 * @param nombreColor
+	 * @return
+	 */
+	TipoColorEntity findByNombre (String nombreColor);
+	
+	/**
+	 * Se listan todos los tipo color<br>
+	 * Creado el Oct 6, 2022 a las 4:12:17 PM <br>
+	 *
+	 * @return
+	 */
 	List<TipoColorEntity> getAll();
 }

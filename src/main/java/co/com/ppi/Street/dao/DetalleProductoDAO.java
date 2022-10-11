@@ -48,11 +48,38 @@ public interface DetalleProductoDAO {
 	DetalleProductoEntity findByPK(Long idDetalleProducto);
 	
 	/**
+	 * metodo encargado de encontrar un detalleProducto por idTipoColor en la BD<br>
+	 * Creado el Oct 6, 2022 a las 2:45:12 PM <br>
+	 *
+	 * @param idTipoColor
+	 * @return
+	 */
+	DetalleProductoEntity findByIdTipoColor(Long idTipoColor);
+	
+	/**
+	 * metodo encarfado de encontrar un detalleProducto por idTipoTalla en la BD<br>
+	 * Creado el Oct 6, 2022 a las 2:45:49 PM <br>
+	 *
+	 * @param idTipoTalla
+	 * @return
+	 */
+	DetalleProductoEntity findByIdTipoTalla(Long idTipoTalla);
+	
+	/**
+	 * metodo encargado de encontrar un detalleProducto por idTipoGenero en la BD<br>
+	 * Creado el Oct 6, 2022 a las 2:46:29 PM <br>
+	 *
+	 * @param idTipoGenero
+	 * @return
+	 */
+	DetalleProductoEntity findByIdTipoGenero(Long idTipoGenero);
+	
+	/**
 	 * Encuentra el detalleProducto por el IdProducto <br>
 	 * Creado el Oct 2, 2022 a las 2:48:26 PM <br>
 	 *
 	 * @param idProducto
 	 * @return
 	 */
-	List<DetalleProductoEntity> findByIdProducto (Long idProducto);
+	DetalleProductoEntity findByIdProducto (Long idProducto);
 }

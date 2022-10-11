@@ -3,6 +3,8 @@
  */
 package co.com.ppi.Street.dao;
 
+import java.util.List;
+
 import co.com.ppi.Street.models.entity.TipoSubcategoriaProductoEntity;
 
 /**
@@ -43,4 +45,22 @@ public interface TipoSubcategoriaProductoDAO {
 	 * @return
 	 */
 	TipoSubcategoriaProductoEntity findByPK(Long idTipoSubcategoriaProducto);
+	
+	/**
+	 * método encargado mostrar los tipoSubcategoriaProducto por nombre <br>
+	 * Creado el Oct 6, 2022 a las 3:22:46 PM <br>
+	 *
+	 * @param nombre
+	 * @return
+	 */
+	TipoSubcategoriaProductoEntity findByNombre(String nombre);
+	
+	/**
+	 * método encargado mostrar los tipoSubcategoriaProducto por idTipoCategoriaProducto<br>
+	 * Creado el Oct 6, 2022 a las 3:27:23 PM <br>
+	 *
+	 * @param idTipoCategoriaProducto
+	 * @return
+	 */
+	TipoSubcategoriaProductoEntity findByIdTipoCategoriaProducto(Long idTipoCategoriaProducto);
 }

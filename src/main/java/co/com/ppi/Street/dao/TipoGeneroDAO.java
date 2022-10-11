@@ -3,6 +3,8 @@
  */
 package co.com.ppi.Street.dao;
 
+import java.util.List;
+
 import co.com.ppi.Street.models.entity.TipoGeneroEntity;
 
 /**
@@ -43,4 +45,30 @@ public interface TipoGeneroDAO {
 	 * @return
 	 */
 	TipoGeneroEntity findByPK(Long idTipoGenero);
+	
+	/**
+	 * metodo encargado de listar todos los tipoGenero por genero de la BD<br>
+	 * Creado el Oct 6, 2022 a las 3:11:33 PM <br>
+	 *
+	 * @param genero
+	 * @return
+	 */
+	TipoGeneroEntity findByGenero(String genero);
+	
+	/**
+	 * metodo encargado de listar todos los tipoGenero por abreviatura de la BD<br>
+	 * Creado el Oct 6, 2022 a las 3:12:12 PM <br>
+	 *
+	 * @param abreviatura
+	 * @return
+	 */
+	TipoGeneroEntity finByAbreviatura(String abreviatura);
+	
+	/**
+	 * Va retornar todos los tipoGenero registrados<br>
+	 * Creado el Oct 6, 2022 a las 3:12:45 PM <br>
+	 *
+	 * @return
+	 */
+	List<TipoGeneroEntity> getAll();
 }

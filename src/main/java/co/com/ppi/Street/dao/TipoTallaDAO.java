@@ -3,6 +3,8 @@
  */
 package co.com.ppi.Street.dao;
 
+import java.util.List;
+
 import co.com.ppi.Street.models.entity.TipoTallaEntity;
 
 /**
@@ -43,4 +45,21 @@ public interface TipoTallaDAO {
 	 * @return
 	 */
 	TipoTallaEntity findByPK(Long idTipoTalla);
+	
+	/**
+	 * metodo encargado de encontrar nombre de la talla en la BD<br>
+	 * Creado el Oct 6, 2022 a las 3:38:25 PM <br>
+	 *
+	 * @param nombreTipoTalla
+	 * @return
+	 */
+	TipoTallaEntity findByNombre(String nombreTipoTalla);
+	
+	/**
+	 * Va retornar todos los tipo talla registrados<br>
+	 * Creado el Sep 30, 2022 a las 12:34:57 AM <br>
+	 *
+	 * @return
+	 */
+	List<TipoTallaEntity> getAll();
 }

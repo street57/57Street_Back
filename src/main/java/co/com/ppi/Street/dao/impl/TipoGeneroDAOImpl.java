@@ -3,12 +3,18 @@
  */
 package co.com.ppi.Street.dao.impl;
 
+import java.util.Collections;
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
 import co.com.ppi.Street.dao.TipoGeneroDAO;
+import co.com.ppi.Street.models.entity.TipoColorEntity;
 import co.com.ppi.Street.models.entity.TipoGeneroEntity;
 
 /**
@@ -53,6 +59,54 @@ public class TipoGeneroDAOImpl implements TipoGeneroDAO  {
 	@Override
 	public TipoGeneroEntity findByPK(Long idTipoGenero) {
 		return this.entityManager.find(TipoGeneroEntity.class, idTipoGenero);
+	}
+
+	/* (non-Javadoc)
+	 * @see co.com.ppi.Street.dao.TipoGeneroDAO#findByGenero(java.lang.String)
+	 */
+	@Override
+	public TipoGeneroEntity findByGenero(String genero) {
+		Query query = this.entityManager.createNativeQuery(
+				"SELECT * FROM TIPO_GENERO WHERE GENERO = ?1", 
+				TipoGeneroEntity.class);
+		query.setParameter(1, genero);
+		try {
+			return (TipoGeneroEntity) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see co.com.ppi.Street.dao.TipoGeneroDAO#finByAbreviatura(java.lang.String)
+	 */
+	@Override
+	public TipoGeneroEntity finByAbreviatura(String abreviatura) {
+		Query query = this.entityManager.createNativeQuery(
+				"SELECT * FROM TIPO_GENERO WHERE ABREVIATURA = ?1", 
+				TipoGeneroEntity.class);
+		query.setParameter(1, abreviatura);
+		try {
+			return (TipoGeneroEntity) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+				
+	}
+
+	/* (non-Javadoc)
+	 * @see co.com.ppi.Street.dao.TipoGeneroDAO#getAll()
+	 */
+	@Override
+	public List<TipoGeneroEntity> getAll() {
+		Query query = this.entityManager.createNativeQuery(
+				"SELECT * FROM TIPO_GENERO", 
+				TipoGeneroEntity.class);
+		try {
+			return  query.getResultList();	
+		} catch (NoResultException e) {
+			return Collections.emptyList();
+		}
 	}
 
 }
