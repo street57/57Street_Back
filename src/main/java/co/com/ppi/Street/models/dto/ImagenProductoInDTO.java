@@ -9,12 +9,28 @@ package co.com.ppi.Street.models.dto;
  *
  */
 public class ImagenProductoInDTO {
+	
+	private Long idImagenProducto;
 
 	private Long idTipoColor;
 	
 	private Long idProducto;
 	
 	private String imagenBase64;
+
+	/**
+	 * @return the idImagenProducto
+	 */
+	public Long getIdImagenProducto() {
+		return idImagenProducto;
+	}
+
+	/**
+	 * @param idImagenProducto the idImagenProducto to set
+	 */
+	public void setIdImagenProducto(Long idImagenProducto) {
+		this.idImagenProducto = idImagenProducto;
+	}
 
 	/**
 	 * @return the idTipoColor

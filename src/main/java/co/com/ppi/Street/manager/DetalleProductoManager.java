@@ -3,6 +3,8 @@
  */
 package co.com.ppi.Street.manager;
 
+import java.util.List;
+
 import javax.ws.rs.core.Response;
 
 import co.com.ppi.Street.models.entity.DetalleProductoEntity;
@@ -84,5 +86,5 @@ public interface DetalleProductoManager {
 	 * @param idProducto
 	 * @return
 	 */
-	DetalleProductoEntity findByIdProducto (Long idProducto);
+	List<DetalleProductoEntity> findByIdProducto (Long idProducto);
 }

@@ -4,10 +4,12 @@
 package co.com.ppi.Street.services;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -18,6 +20,7 @@ import co.com.ppi.Street.manager.ProductoManager;
 import co.com.ppi.Street.models.dto.ActualizarProductoInDTO;
 import co.com.ppi.Street.models.dto.CrearProductoInDTO;
 import co.com.ppi.Street.models.entity.DetalleProductoEntity;
+import co.com.ppi.Street.models.entity.ProductoEntity;
 import co.com.ppi.Street.models.entity.TipoColorEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -49,7 +52,24 @@ public class ProductoService {
 	@ApiOperation(value = "/", notes = "Actualice detalle producto")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response update(ActualizarProductoInDTO productoActualizar) {
-		return this.productoManager.actualizarProducto(productoActualizar);
+	public Response update(@QueryParam("idProducto") Long idProducto, ActualizarProductoInDTO productoActualizar) {
+		return this.productoManager.actualizarProducto(idProducto, productoActualizar);
 	}
+	
+	@GET
+	@Path("/findProductoById")
+	@ApiOperation(value = "/findProductoById", notes = "Encuentra un producto entity por id")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ProductoEntity findProducto(@QueryParam("idProducto") Long idProducto) {
+		return this.productoManager.findByPK(idProducto);
+	}
+	
+	@GET
+	@Path("/findDetalleProductoById")
+	@ApiOperation(value = "/findDetalleProductoById", notes = "Encuentra un producto y su detalle por ID.")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response findDetalleProductoById(@QueryParam("idProducto") Long idProducto) {
+		return this.productoManager.findDetalleProducto(idProducto);
+	}
+	
 }

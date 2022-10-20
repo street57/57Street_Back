@@ -65,13 +65,13 @@ public class ImagenProductoDAOImpl implements ImagenProductoDAO{
 	 * @see co.com.ppi.Street.dao.ImagenProductoDAO#findAllByIdProducto(java.lang.Long)
 	 */
 	@Override
-	public ImagenProductoEntity findByIdProducto(Long idProducto) {
+	public List<ImagenProductoEntity> findByIdProducto(Long idProducto) {
 		Query query = this.entityManager.createNativeQuery(
 				"SELECT * FROM IMAGEN_PRODUCTO WHERE ID_PRODUCTO = ?1", 
 				DetalleProductoEntity.class);
 		query.setParameter(1, idProducto);
 		try {
-			return (ImagenProductoEntity) query.getSingleResult();
+			return (List<ImagenProductoEntity>) query.getResultList();
 		} catch (NoResultException e) {
 			return null;
 		}

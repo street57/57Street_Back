@@ -3,8 +3,11 @@
  */
 package co.com.ppi.Street.manager;
 
+import java.util.List;
+
 import javax.ws.rs.core.Response;
 
+import co.com.ppi.Street.models.entity.TipoColorEntity;
 import co.com.ppi.Street.models.entity.TipoSubcategoriaProductoEntity;
 
 /**
@@ -69,4 +72,11 @@ public interface TipoSubcategoriaProductoManager {
 	 */
 	TipoSubcategoriaProductoEntity findByIdTipoCategoriaProducto(Long idTipoCategoriaProducto);
 
+	/**
+	 * Se listan todas las subcategorias producto<br>
+	 * Creado el Oct 11, 2022 a las 5:16:06 PM <br>
+	 *
+	 * @return
+	 */
+	List<TipoSubcategoriaProductoEntity> getAll();
 }

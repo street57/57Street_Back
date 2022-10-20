@@ -4,6 +4,7 @@
 package co.com.ppi.Street.manager.impl;
 
 import java.util.Base64;
+import java.util.List;
 
 import javax.ws.rs.core.Response;
 
@@ -80,9 +81,9 @@ public class ImagenProductoManagerImpl implements ImagenProductoManager {
 	 * @see co.com.ppi.Street.manager.ImagenProductoManager#findByIdProducto(java.lang.Long)
 	 */
 	@Override
-	public ImagenProductoEntity findByIdProducto(Long idProducto) {
+	public List<ImagenProductoEntity> findByIdProducto(Long idProducto) {
 		return this.imagenProductoDAO.findByIdProducto(idProducto);
-		}
+	}
 
 	/* (non-Javadoc)
 	 * @see co.com.ppi.Street.manager.ImagenProductoManager#findByIdTipoColor(java.lang.Long)

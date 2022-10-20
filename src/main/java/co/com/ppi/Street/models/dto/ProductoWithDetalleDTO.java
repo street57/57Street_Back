@@ -7,30 +7,44 @@ import java.util.List;
 
 /**
  * TODO: descripción <br>
- * Creado el Oct 8, 2022 a las 8:23:16 AM <br>
+ * Creado el Oct 19, 2022 a las 8:46:03 PM <br>
  *
  */
-public class ActualizarProductoInDTO {
-
-	private String nombre;
-
-	private String descripcion;
-
-	private Double precio;
-
-	private Long idTipoSubcategoriaProducto;
-
-	List<DetalleProductoInDTO> listaDetallesProducto;
-
-	List<ImagenProductoInDTO> imagenesProducto;
+public class ProductoWithDetalleDTO {
 	
-	private String activo;
+	private Long idProducto;
+	
+	private String nombre;
+	
+	private String descripcion;
+	
+	private Double precio;
+	
+	private Long idTipoSubcategoriaProducto;
+	
+	List<DetalleProductoInDTO> listaDetallesProducto;
+	
+	List<ImagenProductoInDTO> imagenesProducto;
 
 	/**
 	 * @return the nombre
 	 */
 	public String getNombre() {
 		return nombre;
+	}
+
+	/**
+	 * @return the idProducto
+	 */
+	public Long getIdProducto() {
+		return idProducto;
+	}
+
+	/**
+	 * @param idProducto the idProducto to set
+	 */
+	public void setIdProducto(Long idProducto) {
+		this.idProducto = idProducto;
 	}
 
 	/**
@@ -110,18 +124,4 @@ public class ActualizarProductoInDTO {
 		this.imagenesProducto = imagenesProducto;
 	}
 
-	/**
-	 * @return the activo
-	 */
-	public String getActivo() {
-		return activo;
-	}
-
-	/**
-	 * @param activo the activo to set
-	 */
-	public void setActivo(String activo) {
-		this.activo = activo;
-	}
-	
 }

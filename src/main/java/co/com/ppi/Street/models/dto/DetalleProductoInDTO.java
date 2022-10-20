@@ -9,6 +9,8 @@ package co.com.ppi.Street.models.dto;
  *
  */
 public class DetalleProductoInDTO {
+	
+	private Long idDetalleProducto;
 
 	private Long idTipoTalla;
 	
@@ -19,6 +21,21 @@ public class DetalleProductoInDTO {
 	private Long idProducto;
 	
 	private Integer cantidad;
+
+	
+	/**
+	 * @return the idDetalleProducto
+	 */
+	public Long getIdDetalleProducto() {
+		return idDetalleProducto;
+	}
+
+	/**
+	 * @param idDetalleProducto the idDetalleProducto to set
+	 */
+	public void setIdDetalleProducto(Long idDetalleProducto) {
+		this.idDetalleProducto = idDetalleProducto;
+	}
 
 	/**
 	 * @return the idTipoTalla

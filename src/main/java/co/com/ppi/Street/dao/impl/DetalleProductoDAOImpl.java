@@ -64,17 +64,16 @@ public class DetalleProductoDAOImpl implements DetalleProductoDAO{
 	 * @see co.com.ppi.Street.dao.DetalleProductoDAO#findByIdProducto(java.lang.Long)
 	 */
 	@Override
-	public DetalleProductoEntity findByIdProducto(Long idProducto) {
+	public List<DetalleProductoEntity> findByIdProducto(Long idProducto) {
 		Query query = this.entityManager.createNativeQuery(
 				"SELECT * FROM DETALLE_PRODUCTO WHERE ID_PRODUCTO = ?1", 
 				DetalleProductoEntity.class);
 		query.setParameter(1, idProducto);
 		try {
-			return (DetalleProductoEntity) query.getSingleResult();
+			return (List<DetalleProductoEntity>) query.getResultList();
 		} catch (NoResultException e) {
-			return null;
+			return Collections.emptyList();
 		}
-		
 	}
 
 	/* (non-Javadoc)

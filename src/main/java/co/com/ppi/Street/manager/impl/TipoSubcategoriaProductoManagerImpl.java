@@ -3,6 +3,8 @@
  */
 package co.com.ppi.Street.manager.impl;
 
+import java.util.List;
+
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import co.com.ppi.Street.dao.TipoSubcategoriaProductoDAO;
 import co.com.ppi.Street.manager.TipoSubcategoriaProductoManager;
+import co.com.ppi.Street.models.entity.TipoColorEntity;
 import co.com.ppi.Street.models.entity.TipoSubcategoriaProductoEntity;
 
 /**
@@ -89,5 +92,14 @@ public class TipoSubcategoriaProductoManagerImpl implements TipoSubcategoriaProd
 	@Override
 	public TipoSubcategoriaProductoEntity findByIdTipoCategoriaProducto(Long idTipoCategoriaProducto) {
 		return this.tipoSubcategoriaProductoDAO.findByIdTipoCategoriaProducto(idTipoCategoriaProducto);
+	}
+
+	/* (non-Javadoc)
+	 * @see co.com.ppi.Street.manager.TipoSubcategoriaProductoManager#getAll()
+	 */
+	@Override
+	public List<TipoSubcategoriaProductoEntity> getAll() {
+		List<TipoSubcategoriaProductoEntity> listaSubcategoriasProdutos = this.tipoSubcategoriaProductoDAO.getAll();
+		return listaSubcategoriasProdutos;
 	}
 }

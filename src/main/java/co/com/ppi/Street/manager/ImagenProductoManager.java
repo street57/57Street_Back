@@ -3,6 +3,8 @@
  */
 package co.com.ppi.Street.manager;
 
+import java.util.List;
+
 import javax.ws.rs.core.Response;
 
 import co.com.ppi.Street.models.entity.ImagenProductoEntity;
@@ -57,7 +59,7 @@ public interface ImagenProductoManager {
 	 * @param idProducto
 	 * @return
 	 */
-	ImagenProductoEntity findByIdProducto(Long idProducto);
+	List<ImagenProductoEntity> findByIdProducto(Long idProducto);
 	
 	/**
 	 * Se encuentra la imagen por id de tipo color<br>

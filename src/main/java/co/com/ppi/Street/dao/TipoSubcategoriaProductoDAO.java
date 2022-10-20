@@ -63,4 +63,12 @@ public interface TipoSubcategoriaProductoDAO {
 	 * @return
 	 */
 	TipoSubcategoriaProductoEntity findByIdTipoCategoriaProducto(Long idTipoCategoriaProducto);
+	
+	/**
+	 * Va retornar todos los tipo subcategoria producto registrados<br>
+	 * Creado el Oct 11, 2022 a las 5:21:17 PM <br>
+	 *
+	 * @return
+	 */
+	List<TipoSubcategoriaProductoEntity> getAll();
 }

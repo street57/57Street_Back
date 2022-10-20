@@ -53,7 +53,7 @@ public interface ImagenProductoDAO {
 	 * @param idProducto
 	 * @return
 	 */
-	ImagenProductoEntity findByIdProducto(Long idProducto);
+	List<ImagenProductoEntity> findByIdProducto(Long idProducto);
 	
 	/**
 	 * metodo encargado de listar las imagenProducto por idTipoColor<br>

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package co.com.ppi.Street.dao;
 
 import java.util.List;
@@ -75,11 +72,11 @@ public interface DetalleProductoDAO {
 	DetalleProductoEntity findByIdTipoGenero(Long idTipoGenero);
 	
 	/**
-	 * Encuentra el detalleProducto por el IdProducto <br>
+	 * Encuentra los detalles dle producto por el IdProducto <br>
 	 * Creado el Oct 2, 2022 a las 2:48:26 PM <br>
 	 *
 	 * @param idProducto
 	 * @return
 	 */
-	DetalleProductoEntity findByIdProducto (Long idProducto);
+	List<DetalleProductoEntity> findByIdProducto (Long idProducto);
 }

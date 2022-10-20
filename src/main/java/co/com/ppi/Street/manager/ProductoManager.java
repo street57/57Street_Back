@@ -1,6 +1,3 @@
-/**
- * 
- */
 package co.com.ppi.Street.manager;
 
 import java.util.List;
@@ -22,10 +19,11 @@ public interface ProductoManager {
 	 * Se actualiza un producto<br>
 	 * Creado el Oct 8, 2022 a las 8:28:32 AM <br>
 	 *
+	 * @param idProducto
 	 * @param producto
 	 * @return
 	 */
-	Response actualizarProducto(ActualizarProductoInDTO producto);
+	Response actualizarProducto(Long idProducto, ActualizarProductoInDTO producto);
 	
 	/**
 	 * Se crea un producto<br>
@@ -54,6 +52,15 @@ public interface ProductoManager {
 	 * @return
 	 */
 	ProductoEntity findByPK(Long idProducto);
+	
+	/**
+	 * Método encargado de retornar el detalle de un producto. <br>
+	 * Creado el Oct 19, 2022 a las 8:44:23 PM <br>
+	 *
+	 * @param idProducto
+	 * @return
+	 */
+	Response findDetalleProducto(Long idProducto);
 
 	/**
 	 * Se encuentra el producto por el nombre<br>

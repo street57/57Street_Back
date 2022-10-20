@@ -19,56 +19,56 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.com.ppi.Street.manager.TipoColorManager;
+import co.com.ppi.Street.manager.TipoTallaManager;
 import co.com.ppi.Street.models.entity.TipoColorEntity;
+import co.com.ppi.Street.models.entity.TipoTallaEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 /**
  * TODO: descripción <br>
- * Creado el Sep 30, 2022 a las 12:09:15 AM <br>
+ * Creado el Oct 11, 2022 a las 5:31:37 PM <br>
  *
  */
-@Path("tipo-color")
-@Api("/tipo-color")
+@Path("tipo-talla")
+@Api("/tipo-talla")
 @Component
-public class TipoColorService {
-	
+public class TipoTallaService {
+
 	@Autowired
-	private TipoColorManager tipoColorManager;
+	private TipoTallaManager tipoTallaManager;
 	
 	@POST
 	@Path("/Insert")
-	@ApiOperation(value = "/", notes = "Registra color nuevo")
+	@ApiOperation(value = "/", notes = "Registra talla nueva")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response registrarColor(TipoColorEntity colorRegistrar) {
-		return this.tipoColorManager.create(colorRegistrar);
+	public Response registrarTalla(TipoTallaEntity tallaRegistrar) {
+		return this.tipoTallaManager.create(tallaRegistrar);
 	}
 	
 	@GET
 	@Path("/getAll")
-	@ApiOperation(value = "/getAll", notes = "Retorna la lista de tipo color")
+	@ApiOperation(value = "/getAll", notes = "Retorna la lista de tipo talla")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<TipoColorEntity> getAll(){
-		return this.tipoColorManager.getAll();
+	public List<TipoTallaEntity> getAll(){
+		return this.tipoTallaManager.getAll();
 	}
 	
 	@DELETE
 	@Path("/delete/{idTipoColor}")
-	@ApiOperation(value = "/", notes = "Elimina color")
+	@ApiOperation(value = "/", notes = "Elimina talla")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response delete(@PathParam ("idTipoColor") Long idTipoColor) {
-		return this.tipoColorManager.delete(idTipoColor);				 
+	public Response delete(@PathParam ("idTipoTalla") Long idTipoTalla) {
+		return this.tipoTallaManager.delete(idTipoTalla);				 
 	}
 	
 	@PUT
 	@Path("/update")
-	@ApiOperation(value = "/", notes = "Actualice color")
+	@ApiOperation(value = "/", notes = "Actualice talla")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response update(TipoColorEntity tipoColor) {
-		return this.tipoColorManager.update(tipoColor);
+	public Response update(TipoTallaEntity tipoTalla) {
+		return this.tipoTallaManager.update(tipoTalla);
 	}
-	
 }

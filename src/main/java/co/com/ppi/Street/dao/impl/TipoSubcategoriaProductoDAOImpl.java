@@ -94,4 +94,19 @@ public class TipoSubcategoriaProductoDAOImpl implements TipoSubcategoriaProducto
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see co.com.ppi.Street.dao.TipoSubcategoriaProductoDAO#getAll()
+	 */
+	@Override
+	public List<TipoSubcategoriaProductoEntity> getAll() {
+		Query query = this.entityManager.createNativeQuery(
+				"SELECT * FROM TIPO_SUBCATEGORIA_PRODUCTO",
+				TipoSubcategoriaProductoEntity.class);
+		try {
+			return  query.getResultList();	
+		} catch (NoResultException e) {
+			return Collections.emptyList();
+		}
+	}
+
 }

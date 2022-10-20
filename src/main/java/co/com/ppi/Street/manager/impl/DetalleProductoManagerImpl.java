@@ -3,6 +3,8 @@
  */
 package co.com.ppi.Street.manager.impl;
 
+import java.util.List;
+
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,7 +99,7 @@ public class DetalleProductoManagerImpl implements DetalleProductoManager {
 	 * @see co.com.ppi.Street.manager.DetalleProductoManager#findByIdProducto(java.lang.Long)
 	 */
 	@Override
-	public DetalleProductoEntity findByIdProducto(Long idProducto) {
+	public List<DetalleProductoEntity> findByIdProducto(Long idProducto) {
 		return this.detalleProductoDAO.findByIdProducto(idProducto);
 	}
 
