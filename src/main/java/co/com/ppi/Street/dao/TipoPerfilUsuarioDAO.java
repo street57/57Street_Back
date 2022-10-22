@@ -3,6 +3,8 @@
  */
 package co.com.ppi.Street.dao;
 
+import java.util.List;
+
 import co.com.ppi.Street.models.entity.TipoPerfilUsuarioEntity;
 
 /**
@@ -43,5 +45,13 @@ public interface TipoPerfilUsuarioDAO {
      * @return
     */
     TipoPerfilUsuarioEntity findByPk(Long id);
+    
+    /**
+     * Metodo encargado de listar todos los tipo perfil usuario<br>
+     * Creado el Oct 22, 2022 a las 1:08:58 AM <br>
+     *
+     * @return
+     */
+    List<TipoPerfilUsuarioEntity> getAll();
 
 }

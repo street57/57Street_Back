@@ -3,8 +3,13 @@
  */
 package co.com.ppi.Street.dao.impl;
 
+import java.util.Collections;
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -53,6 +58,21 @@ public class TipoPerfilUsuarioDAOImpl implements TipoPerfilUsuarioDAO{
 	@Override
 	public TipoPerfilUsuarioEntity findByPk(Long id) {
 		return this.entityManager.find(TipoPerfilUsuarioEntity.class, id);
+	}
+
+	/* (non-Javadoc)
+	 * @see co.com.ppi.Street.dao.TipoPerfilUsuarioDAO#getAll()
+	 */
+	@Override
+	public List<TipoPerfilUsuarioEntity> getAll() {
+		Query query = this.entityManager.createNativeQuery(
+				"SELECT * FROM TIPO_PERFIL_USUARIO",
+				TipoPerfilUsuarioEntity.class);
+		try {
+			return  query.getResultList();	
+		} catch (NoResultException e) {
+			return Collections.emptyList();
+		}
 	}
 
 }
