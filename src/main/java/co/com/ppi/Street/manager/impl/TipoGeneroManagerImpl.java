@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import co.com.ppi.Street.dao.TipoGeneroDAO;
 import co.com.ppi.Street.manager.TipoGeneroManager;
 import co.com.ppi.Street.models.entity.TipoGeneroEntity;
+import co.com.ppi.Street.util.Constantes.Activo;
 
 /**
  * TODO: descripción <br>
@@ -32,13 +33,15 @@ public class TipoGeneroManagerImpl implements TipoGeneroManager{
 	@Override
 	@Transactional
 	public Response create(TipoGeneroEntity tipoGenero) {
-		TipoGeneroEntity tipoGeneroExistente = this.tipoGeneroDAO.findByGenero(tipoGenero.getGenero());
-		if(tipoGeneroExistente != null) {
+		TipoGeneroEntity tipoGeneroCrear = this.tipoGeneroDAO.findByGenero(tipoGenero.getGenero());
+		if(tipoGeneroCrear != null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
-		TipoGeneroEntity tipoGeneroCrear = new TipoGeneroEntity();
-		tipoGeneroCrear.setGenero(tipoGenero.getGenero());
-		this.tipoGeneroDAO.insert(tipoGeneroCrear);
+		TipoGeneroEntity tipoGeneroCrearNuevo = new TipoGeneroEntity();
+		tipoGeneroCrearNuevo.setGenero(tipoGenero.getGenero());
+		tipoGeneroCrearNuevo.setAbreviatura(tipoGenero.getAbreviatura());
+		tipoGeneroCrearNuevo.setActivo(Activo.SI);
+		this.tipoGeneroDAO.insert(tipoGeneroCrearNuevo);
 		return Response.status(Response.Status.OK).build();
 	}
 
@@ -46,12 +49,14 @@ public class TipoGeneroManagerImpl implements TipoGeneroManager{
 	 * @see co.com.ppi.Street.manager.TipoGeneroManager#update(co.com.ppi.Street.models.entity.TipoGeneroEntity)
 	 */
 	@Override
+	@Transactional
 	public Response update(TipoGeneroEntity tipoGenero) {
 		TipoGeneroEntity tipoGeneroExistente = this.tipoGeneroDAO.findByPK(tipoGenero.getIdTipoGenero());
-		if(tipoGeneroExistente != null) {
+		if(tipoGeneroExistente.getIdTipoGenero() == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		tipoGeneroExistente.setGenero(tipoGenero.getGenero());
+		tipoGeneroExistente.setAbreviatura(tipoGenero.getAbreviatura());
 		this.tipoGeneroDAO.update(tipoGeneroExistente);
 		return Response.status(Response.Status.OK).build();		
 	}
@@ -60,9 +65,10 @@ public class TipoGeneroManagerImpl implements TipoGeneroManager{
 	 * @see co.com.ppi.Street.manager.TipoGeneroManager#delete(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public Response delete(Long idTipoGenero) {
 		TipoGeneroEntity tipoGeneroExistente = this.tipoGeneroDAO.findByPK(idTipoGenero);
-		if(tipoGeneroExistente != null) {
+		if(tipoGeneroExistente == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		this.tipoGeneroDAO.delete(tipoGeneroExistente);

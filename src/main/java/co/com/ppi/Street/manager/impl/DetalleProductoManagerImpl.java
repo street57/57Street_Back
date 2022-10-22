@@ -40,9 +40,10 @@ public class DetalleProductoManagerImpl implements DetalleProductoManager {
 	 * @see co.com.ppi.Street.manager.DetalleProductoManager#update(co.com.ppi.Street.models.entity.DetalleProductoEntity)
 	 */
 	@Override
+	@Transactional
 	public Response update(DetalleProductoEntity detalleProducto) {
 		DetalleProductoEntity detalleProductoExistente = this.detalleProductoDAO.findByPK(detalleProducto.getIdDetalleProducto());
-		if(detalleProductoExistente != null) {
+		if(detalleProductoExistente == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		detalleProductoExistente.setIdDetalleProducto(detalleProducto.getIdDetalleProducto());
@@ -54,9 +55,10 @@ public class DetalleProductoManagerImpl implements DetalleProductoManager {
 	 * @see co.com.ppi.Street.manager.DetalleProductoManager#delete(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public Response delete(Long idDetalleProducto) {
 		DetalleProductoEntity detalleProductoExistente = this.detalleProductoDAO.findByPK(idDetalleProducto);
-		if(detalleProductoExistente != null) {
+		if(detalleProductoExistente == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		this.detalleProductoDAO.delete(detalleProductoExistente);

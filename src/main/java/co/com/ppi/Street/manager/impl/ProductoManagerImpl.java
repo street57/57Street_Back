@@ -59,6 +59,7 @@ public class ProductoManagerImpl implements ProductoManager {
 		productoRegistrar.setDescripcion(producto.getDescripcion());
 		productoRegistrar.setPrecio(producto.getPrecio());
 		productoRegistrar.setActivo(Activo.SI);
+		productoRegistrar.setIdTipoSubcategoriaProducto(producto.getIdTipoSubcategoriaProducto());
 		productoDAO.insert(productoRegistrar);
 
 		for (DetalleProductoInDTO detalle : producto.getListaDetallesProducto()) {
@@ -88,9 +89,19 @@ public class ProductoManagerImpl implements ProductoManager {
 	 * @see co.com.ppi.Street.manager.ProductoManager#delete(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public Response delete(Long idProducto) {
-		// TODO Auto-generated method stub
-		return null;
+		ProductoEntity productoEliminar = this.productoDAO.findByPK(idProducto);
+		List<DetalleProductoEntity> listaDetallesProductoEntity = this.detalleProductoDAO.findByIdProducto(idProducto);
+		for (DetalleProductoEntity detalleProductoEntity : listaDetallesProductoEntity) {
+			this.detalleProductoDAO.delete(detalleProductoEntity);
+		}
+		List<ImagenProductoEntity> imagenesEntity = this.imagenProductoDAO.findByIdProducto(idProducto);
+		for (ImagenProductoEntity imagenProductoEntity : imagenesEntity) {
+			this.imagenProductoDAO.delete(imagenProductoEntity);
+		}
+		this.productoDAO.delete(productoEliminar);
+		return Response.status(Response.Status.OK).build();
 	}
 
 	/*
@@ -130,12 +141,14 @@ public class ProductoManagerImpl implements ProductoManager {
 	 * @see co.com.ppi.Street.manager.ProductoManager#actualizarProducto(java.lang.Long, co.com.ppi.Street.models.dto.ActualizarProductoInDTO)
 	 */
 	@Override
+	@Transactional
 	public Response actualizarProducto(Long idProducto, ActualizarProductoInDTO producto) {
 		ProductoEntity productoRegistrar = this.productoDAO.findByPK(idProducto);
 		productoRegistrar.setNombre(producto.getNombre());
 		productoRegistrar.setDescripcion(producto.getDescripcion());
 		productoRegistrar.setPrecio(producto.getPrecio());
 		productoRegistrar.setActivo(producto.getActivo());
+		productoRegistrar.setIdTipoSubcategoriaProducto(producto.getIdTipoSubcategoriaProducto());
 		productoDAO.update(productoRegistrar);
 
 		for (DetalleProductoInDTO detalle : producto.getListaDetallesProducto()) {
@@ -149,7 +162,7 @@ public class ProductoManagerImpl implements ProductoManager {
 		}
 
 		for (ImagenProductoInDTO imagenProducto : producto.getImagenesProducto()) {
-			ImagenProductoEntity imagenRegistrar = this.imagenProductoDAO.findByPK(imagenProducto.getIdProducto());
+			ImagenProductoEntity imagenRegistrar = this.imagenProductoDAO.findByPK(imagenProducto.getIdImagenProducto());
 			imagenRegistrar.setImagen(this.imagenProductoManager.base64ToBytes(imagenProducto.getImagenBase64()));
 			imagenRegistrar.setIdProducto(productoRegistrar.getIdProducto());
 			imagenRegistrar.setIdTipoColor(imagenProducto.getIdTipoColor());

@@ -32,12 +32,13 @@ public class TipoTallaManagerImpl implements TipoTallaManager{
 	@Override
 	@Transactional
 	public Response create(TipoTallaEntity tipoTalla) {
-		TipoTallaEntity tipoTallaExistente = this.tipoTallaDAO.findByNombre(tipoTalla.getNombre());
+		TipoTallaEntity tipoTallaExistente = this.findByNombre(tipoTalla.getNombre());
 		if(tipoTallaExistente != null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		TipoTallaEntity tipoTallaCrear = new TipoTallaEntity();
 		tipoTallaCrear.setNombre(tipoTalla.getNombre());
+		tipoTallaCrear.setDescripcion(tipoTalla.getDescripcion());
 		this.tipoTallaDAO.insert(tipoTallaCrear);
 		return Response.status(Response.Status.OK).build();
 	}
@@ -46,12 +47,14 @@ public class TipoTallaManagerImpl implements TipoTallaManager{
 	 * @see co.com.ppi.Street.manager.TipoTallaManager#update(co.com.ppi.Street.models.entity.TipoTallaEntity)
 	 */
 	@Override
+	@Transactional
 	public Response update(TipoTallaEntity tipoTalla) {
 		TipoTallaEntity tipoTallaExistente = this.tipoTallaDAO.findByPK(tipoTalla.getIdTalla());
-		if(tipoTallaExistente != null) {
+		if(tipoTallaExistente.getIdTalla() == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		tipoTallaExistente.setNombre(tipoTalla.getNombre());
+		tipoTallaExistente.setDescripcion(tipoTalla.getDescripcion());
 		this.tipoTallaDAO.update(tipoTallaExistente);
 		return Response.status(Response.Status.OK).build();
 	}
@@ -60,9 +63,10 @@ public class TipoTallaManagerImpl implements TipoTallaManager{
 	 * @see co.com.ppi.Street.manager.TipoTallaManager#delete(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public Response delete(Long idTipoTalla) {
 		TipoTallaEntity tipoTallaExistente = this.tipoTallaDAO.findByPK(idTipoTalla);
-		if(tipoTallaExistente != null) {
+		if(tipoTallaExistente == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		this.tipoTallaDAO.delete(tipoTallaExistente);
@@ -89,6 +93,7 @@ public class TipoTallaManagerImpl implements TipoTallaManager{
 	 * @see co.com.ppi.Street.manager.TipoTallaManager#getAll()
 	 */
 	@Override
+	@Transactional
 	public List<TipoTallaEntity> getAll() {
 		List<TipoTallaEntity> listaTallas = this.tipoTallaDAO.getAll();
 		return listaTallas;

@@ -68,7 +68,7 @@ public class ImagenProductoDAOImpl implements ImagenProductoDAO{
 	public List<ImagenProductoEntity> findByIdProducto(Long idProducto) {
 		Query query = this.entityManager.createNativeQuery(
 				"SELECT * FROM IMAGEN_PRODUCTO WHERE ID_PRODUCTO = ?1", 
-				DetalleProductoEntity.class);
+				ImagenProductoEntity.class);
 		query.setParameter(1, idProducto);
 		try {
 			return (List<ImagenProductoEntity>) query.getResultList();

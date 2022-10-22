@@ -46,9 +46,10 @@ public class TipoColorManagerImpl implements TipoColorManager{
 	 * @see co.com.ppi.Street.manager.TipoColorManager#update(co.com.ppi.Street.models.entity.TipoColorEntity)
 	 */
 	@Override
+	@Transactional
 	public Response update(TipoColorEntity tipoColor) {
 		TipoColorEntity tipoColorExistente = this.tipoColorDAO.findByPK(tipoColor.getIdTipoColor());
-		if(tipoColorExistente != null) {
+		if(tipoColorExistente.getIdTipoColor() == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		tipoColorExistente.setNombre(tipoColor.getNombre());
@@ -77,9 +78,10 @@ public class TipoColorManagerImpl implements TipoColorManager{
 	 * @see co.com.ppi.Street.manager.TipoColorManager#delete(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public Response delete(Long idTipoColor) {
 		TipoColorEntity tipoColorExistente = this.tipoColorDAO.findByPK(idTipoColor);
-		if(tipoColorExistente != null) {
+		if(tipoColorExistente == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		this.tipoColorDAO.delete(tipoColorExistente);

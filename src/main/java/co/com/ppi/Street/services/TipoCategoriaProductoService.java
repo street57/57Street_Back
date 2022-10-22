@@ -58,7 +58,7 @@ public class TipoCategoriaProductoService {
 	@Path("/delete/{idTipoCategoriaProducto}")
 	@ApiOperation(value = "/", notes = "Elimina categoria producto")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response delete(@PathParam("idTipoColor") Long idTipoCategoriaProducto) {
+	public Response delete(@PathParam("idTipoCategoriaProducto") Long idTipoCategoriaProducto) {
 		return this.tipoCategoriaProductoManager.delete(idTipoCategoriaProducto);
 	}
 	

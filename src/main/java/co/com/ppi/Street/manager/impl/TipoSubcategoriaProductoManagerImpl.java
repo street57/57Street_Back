@@ -15,6 +15,7 @@ import co.com.ppi.Street.dao.TipoSubcategoriaProductoDAO;
 import co.com.ppi.Street.manager.TipoSubcategoriaProductoManager;
 import co.com.ppi.Street.models.entity.TipoColorEntity;
 import co.com.ppi.Street.models.entity.TipoSubcategoriaProductoEntity;
+import co.com.ppi.Street.util.Constantes.Activo;
 
 /**
  * TODO: descripción <br>
@@ -33,13 +34,14 @@ public class TipoSubcategoriaProductoManagerImpl implements TipoSubcategoriaProd
 	@Override
 	@Transactional
 	public Response create(TipoSubcategoriaProductoEntity tipoSubcategoriaProducto) {
-		TipoSubcategoriaProductoEntity tipoSubcategoriaProductoExistente = this.tipoSubcategoriaProductoDAO.findByNombre(tipoSubcategoriaProducto.getNombre());
-		if(tipoSubcategoriaProductoExistente != null) {
+		TipoSubcategoriaProductoEntity tipoSubcategoriaProductoCrear = this.tipoSubcategoriaProductoDAO.findByNombre(tipoSubcategoriaProducto.getNombre());
+		if(tipoSubcategoriaProductoCrear != null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
-		TipoSubcategoriaProductoEntity tipoSubcategoriaProductoCrear = new TipoSubcategoriaProductoEntity();
-		tipoSubcategoriaProductoCrear.setNombre(tipoSubcategoriaProducto.getNombre());
-		this.tipoSubcategoriaProductoDAO.insert(tipoSubcategoriaProductoCrear);
+		TipoSubcategoriaProductoEntity tipoSubcategoriaProductoCrearNuevo = new TipoSubcategoriaProductoEntity();
+		tipoSubcategoriaProductoCrearNuevo.setNombre(tipoSubcategoriaProducto.getNombre());
+		tipoSubcategoriaProductoCrearNuevo.setIdTipoCategoriaProducto(tipoSubcategoriaProducto.getIdTipoCategoriaProducto());
+		this.tipoSubcategoriaProductoDAO.insert(tipoSubcategoriaProductoCrearNuevo);
 		return Response.status(Response.Status.OK).build();
 	}
 
@@ -47,12 +49,14 @@ public class TipoSubcategoriaProductoManagerImpl implements TipoSubcategoriaProd
 	 * @see co.com.ppi.Street.manager.TipoSubcategoriaProductoManager#update(co.com.ppi.Street.models.entity.TipoSubcategoriaProductoEntity)
 	 */
 	@Override
+	@Transactional
 	public Response update(TipoSubcategoriaProductoEntity tipoSubcategoriaProducto) {
-		TipoSubcategoriaProductoEntity tipoSubcategoriaProductoExistente = this.tipoSubcategoriaProductoDAO.findByIdTipoCategoriaProducto(tipoSubcategoriaProducto.getIdTipoSubcategoriaProducto());
-		if(tipoSubcategoriaProductoExistente != null) {
+		TipoSubcategoriaProductoEntity tipoSubcategoriaProductoExistente = this.tipoSubcategoriaProductoDAO.findByPK(tipoSubcategoriaProducto.getIdTipoSubcategoriaProducto());
+		if(tipoSubcategoriaProductoExistente.getIdTipoSubcategoriaProducto() == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		tipoSubcategoriaProductoExistente.setNombre(tipoSubcategoriaProducto.getNombre());
+		tipoSubcategoriaProductoExistente.setIdTipoCategoriaProducto(tipoSubcategoriaProducto.getIdTipoCategoriaProducto());
 		this.tipoSubcategoriaProductoDAO.update(tipoSubcategoriaProductoExistente);
 		return Response.status(Response.Status.OK).build();
 	}
@@ -61,9 +65,10 @@ public class TipoSubcategoriaProductoManagerImpl implements TipoSubcategoriaProd
 	 * @see co.com.ppi.Street.manager.TipoSubcategoriaProductoManager#delete(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public Response delete(Long IdTipoSubcategoriaProducto) {
 		TipoSubcategoriaProductoEntity tipoSubcategoriaProductoExistente = this.findByPK(IdTipoSubcategoriaProducto);
-		if(tipoSubcategoriaProductoExistente != null) {
+		if(tipoSubcategoriaProductoExistente == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		this.tipoSubcategoriaProductoDAO.delete(tipoSubcategoriaProductoExistente);

@@ -4,6 +4,7 @@
 package co.com.ppi.Street.services;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -70,6 +71,14 @@ public class ProductoService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response findDetalleProductoById(@QueryParam("idProducto") Long idProducto) {
 		return this.productoManager.findDetalleProducto(idProducto);
+	}
+	
+	@DELETE
+	@Path("/delete")
+	@ApiOperation(value = "/delete", notes = "Encuentra un producto y su detalle y lo elimina por ID.")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteById(@QueryParam("idProducto") Long idProducto) {
+		return this.productoManager.delete(idProducto);
 	}
 	
 }

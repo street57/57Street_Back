@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.com.ppi.Street.dao.ImagenProductoDAO;
 import co.com.ppi.Street.manager.ImagenProductoManager;
@@ -46,9 +47,10 @@ public class ImagenProductoManagerImpl implements ImagenProductoManager {
 	 * @see co.com.ppi.Street.manager.ImagenProductoManager#update(co.com.ppi.Street.models.entity.ImagenProductoEntity)
 	 */
 	@Override
+	@Transactional
 	public Response update(ImagenProductoEntity imagenProducto) {
 		ImagenProductoEntity imagenProductoExistente = this.imagenProductoDAO.findByPK(imagenProducto.getIdImagenProducto());
-		if(imagenProductoExistente != null) {
+		if(imagenProductoExistente == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		imagenProductoExistente.setImagen(imagenProducto.getImagen());
@@ -60,9 +62,10 @@ public class ImagenProductoManagerImpl implements ImagenProductoManager {
 	 * @see co.com.ppi.Street.manager.ImagenProductoManager#delete(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public Response delete(Long idImagenProducto) {
 		ImagenProductoEntity imagenProductoExistente = this.imagenProductoDAO.findByPK(idImagenProducto);
-		if(imagenProductoExistente != null) {
+		if(imagenProductoExistente == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		this.imagenProductoDAO.delete(imagenProductoExistente);

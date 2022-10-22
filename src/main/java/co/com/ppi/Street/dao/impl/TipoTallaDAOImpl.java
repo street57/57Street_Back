@@ -84,7 +84,7 @@ public class TipoTallaDAOImpl implements TipoTallaDAO {
 	public List<TipoTallaEntity> getAll() {
 		Query query = this.entityManager.createNativeQuery(
 				"SELECT * FROM TIPO_TALLA", 
-				TipoColorEntity.class);
+				TipoTallaEntity.class);
 		try {
 			return  query.getResultList();	
 		} catch (NoResultException e) {

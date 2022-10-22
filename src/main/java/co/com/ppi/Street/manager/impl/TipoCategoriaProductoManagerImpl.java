@@ -37,8 +37,9 @@ public class TipoCategoriaProductoManagerImpl implements TipoCategoriaProductoMa
 		if(tipoCategoriaProductoExistente != null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
-		tipoCategoriaProductoExistente.setNombre(tipoCategoriaProducto.getNombre());
-		this.tipoCategoriaProductoDAO.insert(tipoCategoriaProducto);
+		TipoCategoriaProductoEntity tipoCategoriaProductoCrear = new TipoCategoriaProductoEntity();
+		tipoCategoriaProductoCrear.setNombre(tipoCategoriaProducto.getNombre());
+		this.tipoCategoriaProductoDAO.insert(tipoCategoriaProductoCrear);
 		return Response.status(Response.Status.OK).build();
 	}
 
@@ -46,13 +47,14 @@ public class TipoCategoriaProductoManagerImpl implements TipoCategoriaProductoMa
 	 * @see co.com.ppi.Street.manager.TipoCategoriaProductoManager#update(co.com.ppi.Street.models.entity.TipoCategoriaProductoEntity)
 	 */
 	@Override
+	@Transactional
 	public Response update(TipoCategoriaProductoEntity tipoCategoriaProducto) {
-		TipoCategoriaProductoEntity tipoCategoriaProductoExistente = this.tipoCategoriaProductoDAO.findByNombre(tipoCategoriaProducto.getNombre());
-		if(tipoCategoriaProductoExistente != null) {
+		TipoCategoriaProductoEntity tipoCategoriaProductoExistente = this.tipoCategoriaProductoDAO.findByPK(tipoCategoriaProducto.getIdTipoCategoriaProducto());
+		if(tipoCategoriaProductoExistente.getIdTipoCategoriaProducto() == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		tipoCategoriaProductoExistente.setNombre(tipoCategoriaProducto.getNombre());
-		this.tipoCategoriaProductoDAO.insert(tipoCategoriaProducto);
+		this.tipoCategoriaProductoDAO.update(tipoCategoriaProductoExistente);
 		return Response.status(Response.Status.OK).build();
 	}
 
@@ -60,9 +62,10 @@ public class TipoCategoriaProductoManagerImpl implements TipoCategoriaProductoMa
 	 * @see co.com.ppi.Street.manager.TipoCategoriaProductoManager#delete(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public Response delete(Long idTipoCategoriaProducto) {
 		TipoCategoriaProductoEntity tipoCategoriaProductoExistente = this.tipoCategoriaProductoDAO.findByPK(idTipoCategoriaProducto);
-		if(tipoCategoriaProductoExistente != null) {
+		if(tipoCategoriaProductoExistente == null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		this.tipoCategoriaProductoDAO.delete(tipoCategoriaProductoExistente);

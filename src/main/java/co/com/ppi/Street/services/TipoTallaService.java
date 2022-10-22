@@ -56,7 +56,7 @@ public class TipoTallaService {
 	}
 	
 	@DELETE
-	@Path("/delete/{idTipoColor}")
+	@Path("/delete/{idTipoTalla}")
 	@ApiOperation(value = "/", notes = "Elimina talla")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response delete(@PathParam ("idTipoTalla") Long idTipoTalla) {
