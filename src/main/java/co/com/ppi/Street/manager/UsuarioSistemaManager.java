@@ -62,6 +62,16 @@ public interface UsuarioSistemaManager {
 	UsuarioSistemaEntity findByEmail(String emailUsuarioSistema);
 	
 	/**
+	 * Método encargado de encontrar un usuario por email y clave. <br>
+	 * Creado el Oct 22, 2022 a las 8:28:22 PM <br>
+	 *
+	 * @param email
+	 * @param clave
+	 * @return
+	 */
+	UsuarioSistemaEntity findByEmailAndClave(String email, String clave);
+	
+	/**
 	 * Se listan todos los usuariosSistema de la BD<br>
 	 * Creado el Oct 21, 2022 a las 9:46:02 PM <br>
 	 *

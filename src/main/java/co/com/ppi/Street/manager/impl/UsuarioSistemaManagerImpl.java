@@ -101,6 +101,14 @@ public class UsuarioSistemaManagerImpl implements UsuarioSistemaManager{
 	public UsuarioSistemaEntity findByEmail(String emailUsuarioSistema) {
 		return this.usuarioSistemaDAO.findByEmail(emailUsuarioSistema);
 	}
+	
+	/* (non-Javadoc)
+	 * @see co.com.ppi.Street.manager.UsuarioSistemaManager#findByEmailAndClave(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public UsuarioSistemaEntity findByEmailAndClave(String email, String clave) {
+		return this.usuarioSistemaDAO.findByEmailAndClave(email, clave);
+	}
 
 	/* (non-Javadoc)
 	 * @see co.com.ppi.Street.manager.UsuarioSistemaManager#getAll()
@@ -110,4 +118,5 @@ public class UsuarioSistemaManagerImpl implements UsuarioSistemaManager{
 		List<UsuarioSistemaEntity> listaUsuariosSistema = this.usuarioSistemaDAO.getAll();
 		return listaUsuariosSistema;
 	}
+
 }

@@ -69,6 +69,23 @@ public class UsuarioSistemaDAOImpl implements UsuarioSistemaDAO {
 	public UsuarioSistemaEntity findByEmail(String email) {
 		return this.entityManager.find(UsuarioSistemaEntity.class, email);
 	}
+	
+	/* (non-Javadoc)
+	 * @see co.com.ppi.Street.dao.UsuarioSistemaDAO#findByEmailAndClave(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public UsuarioSistemaEntity findByEmailAndClave(String email, String clave) {
+		Query query = this.entityManager.createNativeQuery(
+				"SELECT * FROM USUARIO_SISTEMA WHERE EMAIL = ?1 AND CLAVE = ?2", 
+				UsuarioSistemaEntity.class);
+		query.setParameter(1, email);
+		query.setParameter(2, clave);		
+		try {
+			return (UsuarioSistemaEntity) query.getSingleResult();	
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 
 	/* (non-Javadoc)
 	 * @see co.com.ppi.Street.dao.UsuarioSistemaDAO#getAll()

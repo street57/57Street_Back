@@ -56,6 +56,16 @@ public interface UsuarioSistemaDAO {
     UsuarioSistemaEntity findByEmail(String email);
     
     /**
+	 * Método encargado de encontrar un usuario por email y clave. <br>
+	 * Creado el Oct 22, 2022 a las 8:28:22 PM <br>
+	 *
+	 * @param email
+	 * @param clave
+	 * @return
+	 */
+	UsuarioSistemaEntity findByEmailAndClave(String email, String clave);
+    
+    /**
      * Metodo encargado de listar todos los usuariosSistema<br>
      * Creado el Oct 21, 2022 a las 10:27:18 PM <br>
      *

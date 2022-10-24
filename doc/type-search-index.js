@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"co.com.ppi.Street.manager.impl","l":"TipoUsuarioManagerImpl"}]
