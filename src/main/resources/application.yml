@@ -11,7 +11,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3308/57street
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3308/street57
   jpa:
     show-sql: false
     hibernate:

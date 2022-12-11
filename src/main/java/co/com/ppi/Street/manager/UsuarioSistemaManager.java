@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
+import co.com.ppi.Street.models.dto.RegistrarUsuarioInDTO;
 import co.com.ppi.Street.models.entity.UsuarioSistemaEntity;
 
 /**
@@ -23,7 +24,7 @@ public interface UsuarioSistemaManager {
 	 * @param usuarioSistema
 	 * @return
 	 */
-	Response create(UsuarioSistemaEntity usuarioSistema);
+	Response create(RegistrarUsuarioInDTO registrarUsuario);
 	
 	/**
 	 * Se actualiza un usuarioSistema<br>

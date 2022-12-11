@@ -67,7 +67,16 @@ public class UsuarioSistemaDAOImpl implements UsuarioSistemaDAO {
 	 */
 	@Override
 	public UsuarioSistemaEntity findByEmail(String email) {
-		return this.entityManager.find(UsuarioSistemaEntity.class, email);
+		Query query = this.entityManager.createNativeQuery(
+				"SELECT * FROM USUARIO_SISTEMA WHERE EMAIL = ?1", 
+				UsuarioSistemaEntity.class);
+		query.setParameter(1, email);		
+		try {
+			return (UsuarioSistemaEntity) query.getSingleResult();	
+		} catch (NoResultException e) {
+			return null;
+		}
+
 	}
 	
 	/* (non-Javadoc)
@@ -76,10 +85,10 @@ public class UsuarioSistemaDAOImpl implements UsuarioSistemaDAO {
 	@Override
 	public UsuarioSistemaEntity findByEmailAndClave(String email, String clave) {
 		Query query = this.entityManager.createNativeQuery(
-				"SELECT * FROM USUARIO_SISTEMA WHERE EMAIL = ?1 AND CLAVE = ?2", 
+				"SELECT * FROM USUARIO_SISTEMA WHERE UPPER(EMAIL) = UPPER(?1) AND CLAVE = ?2", 
 				UsuarioSistemaEntity.class);
 		query.setParameter(1, email);
-		query.setParameter(2, clave);		
+ 		query.setParameter(2, clave);		
 		try {
 			return (UsuarioSistemaEntity) query.getSingleResult();	
 		} catch (NoResultException e) {

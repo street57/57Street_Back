@@ -19,6 +19,7 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import co.com.ppi.Street.manager.UsuarioSistemaManager;
+import co.com.ppi.Street.models.dto.RegistrarUsuarioInDTO;
 import co.com.ppi.Street.models.entity.TipoColorEntity;
 import co.com.ppi.Street.models.entity.UsuarioSistemaEntity;
 import io.swagger.annotations.Api;
@@ -41,8 +42,8 @@ public class UsuarioSistemaService {
 	@ApiOperation(value = "/", notes = "Registra usuario sistema nuevo")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response registrarUsuarioSistema(UsuarioSistemaEntity usuarioSistemaRegistrar) {
-		return this.usuarioSistemaManager.create(usuarioSistemaRegistrar);
+	public Response registrarUsuarioSistema(RegistrarUsuarioInDTO registrarUsuario) {
+		return this.usuarioSistemaManager.create(registrarUsuario);
 	}
 	
 	@GET

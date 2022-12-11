@@ -3,6 +3,7 @@
  */
 package co.com.ppi.Street.manager.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.core.Response;
@@ -11,8 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import co.com.ppi.Street.dao.UsuarioPerfilDAO;
 import co.com.ppi.Street.dao.UsuarioSistemaDAO;
 import co.com.ppi.Street.manager.UsuarioSistemaManager;
+import co.com.ppi.Street.models.dto.RegistrarUsuarioInDTO;
+import co.com.ppi.Street.models.entity.UsuarioPerfilEntity;
 import co.com.ppi.Street.models.entity.UsuarioSistemaEntity;
 import co.com.ppi.Street.util.Constantes.Activo;
 
@@ -26,27 +30,33 @@ public class UsuarioSistemaManagerImpl implements UsuarioSistemaManager{
 
 	@Autowired
 	private UsuarioSistemaDAO usuarioSistemaDAO;
+	
+	@Autowired
+	private UsuarioPerfilDAO usuarioPerfilDAO;
 
 	/* (non-Javadoc)
 	 * @see co.com.ppi.Street.manager.UsuarioSistemaManager#create(co.com.ppi.Street.models.entity.UsuarioSistemaEntity)
 	 */
 	@Override
 	@Transactional
-	public Response create(UsuarioSistemaEntity usuarioSistema) {
-		UsuarioSistemaEntity usuarioSistemaExistente = this.usuarioSistemaDAO.findByPk(usuarioSistema.getIdUsuarioSistema());
+	public Response create(RegistrarUsuarioInDTO registrarUsuario) {
+		UsuarioSistemaEntity usuarioSistemaExistente = this.usuarioSistemaDAO.findByEmail(registrarUsuario.getCorreo());
 		if(usuarioSistemaExistente != null) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 		UsuarioSistemaEntity usuarioSistemaCrear = new UsuarioSistemaEntity();
-		usuarioSistemaCrear.setIdTipoUsuario(usuarioSistema.getIdTipoUsuario());
-		usuarioSistemaCrear.setNombres(usuarioSistema.getNombres());
-		usuarioSistemaCrear.setApellidos(usuarioSistema.getApellidos());
-		usuarioSistemaCrear.setEmail(usuarioSistema.getEmail());
-		usuarioSistemaCrear.setClave(usuarioSistema.getClave());
-		usuarioSistemaCrear.setUsuarioAcceso(usuarioSistema.getUsuarioAcceso());
-		usuarioSistemaCrear.setCelular(usuarioSistema.getCelular());
+		usuarioSistemaCrear.setNombres(registrarUsuario.getNombre());
+		usuarioSistemaCrear.setEmail(registrarUsuario.getCorreo());
+		usuarioSistemaCrear.setClave(registrarUsuario.getClave());
+		usuarioSistemaCrear.setIdTipoUsuario(1L);
 		usuarioSistemaCrear.setActivo(Activo.SI);
 		this.usuarioSistemaDAO.insert(usuarioSistemaCrear);
+		
+		UsuarioPerfilEntity usuarioPerfil = new UsuarioPerfilEntity();
+		usuarioPerfil.setIdUsuarioSistema(usuarioSistemaCrear.getIdUsuarioSistema());
+		usuarioPerfil.setIdTipoPerfilUsuario(1L);
+		usuarioPerfil.setFechaModificaBD(new Date());
+		this.usuarioPerfilDAO.insert(usuarioPerfil);
 		return Response.status(Response.Status.OK).entity(usuarioSistemaCrear).build();
 	}
 

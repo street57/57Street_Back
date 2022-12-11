@@ -22,7 +22,7 @@ import javax.persistence.Table;
 public class UsuarioSistemaEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_USUARIO_SISTEMA")
 	private Long idUsuarioSistema;
 	
