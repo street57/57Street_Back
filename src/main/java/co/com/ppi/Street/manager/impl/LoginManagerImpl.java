@@ -21,6 +21,7 @@ import co.com.ppi.Street.manager.UsuarioSistemaManager;
 import co.com.ppi.Street.models.dto.LoginJWTOutDTO;
 import co.com.ppi.Street.models.dto.ResponseDTO;
 import co.com.ppi.Street.models.entity.UsuarioSistemaEntity;
+import co.com.ppi.Street.util.Encrypt;
 
 /**
  * TODO: descripción <br>
@@ -38,11 +39,16 @@ public class LoginManagerImpl implements LoginManager {
 	 */
 	@Override
 	public Response loginJwt(String correo, String clave) {
-		UsuarioSistemaEntity usuarioSistema = this.usuarioSistemaManager.findByEmailAndClave(correo, clave);
+		UsuarioSistemaEntity usuarioSistema = this.usuarioSistemaManager.findByEmail(correo);
 		if (usuarioSistema == null) {
 			// El usuario no existe retornar el response.
 			return new ResponseDTO().paramError("El usuario no se encuentra registrado en el sistema");
 		}
+		
+		if (!Encrypt.validate(clave, usuarioSistema.getClave())) {
+			return new ResponseDTO().paramError("Usuario y/o clave no son correctos, valide la información ingresada");
+		}
+		
 		LoginJWTOutDTO respuesta = new LoginJWTOutDTO();
 		respuesta.setIdUsuario(usuarioSistema.getIdUsuarioSistema());
 		respuesta.setIdTipoUsuario(usuarioSistema.getIdTipoUsuario());

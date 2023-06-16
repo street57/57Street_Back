@@ -14,7 +14,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import co.com.ppi.Street.dao.UsuarioSistemaDAO;
-import co.com.ppi.Street.models.entity.TipoColorEntity;
 import co.com.ppi.Street.models.entity.UsuarioSistemaEntity;
 
 /**
@@ -25,7 +24,7 @@ import co.com.ppi.Street.models.entity.UsuarioSistemaEntity;
 @Repository
 public class UsuarioSistemaDAOImpl implements UsuarioSistemaDAO {
 
-	@PersistenceContext()
+	@PersistenceContext
 	private EntityManager entityManager;
 	
 	/* (non-Javadoc)
@@ -34,7 +33,6 @@ public class UsuarioSistemaDAOImpl implements UsuarioSistemaDAO {
 	@Override
 	public void insert(UsuarioSistemaEntity usuarioSistemaEntity) {
 		this.entityManager.persist(usuarioSistemaEntity);
-		
 	}
 
 	/* (non-Javadoc)

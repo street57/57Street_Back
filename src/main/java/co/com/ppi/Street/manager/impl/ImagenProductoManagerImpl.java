@@ -31,6 +31,7 @@ public class ImagenProductoManagerImpl implements ImagenProductoManager {
 	 * @see co.com.ppi.Street.manager.ImagenProductoManager#create(co.com.ppi.Street.models.entity.ImagenProductoEntity)
 	 */
 	@Override
+	@Transactional
 	public Response create(ImagenProductoEntity imagenProducto) {
 		ImagenProductoEntity imagenProductoExistente = this.imagenProductoDAO.findByPK(imagenProducto.getIdImagenProducto());
 		if(imagenProductoExistente != null) {

@@ -5,6 +5,7 @@ package co.com.ppi.Street.services;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import co.com.ppi.Street.manager.UsuarioSistemaManager;
 import co.com.ppi.Street.models.dto.RegistrarUsuarioInDTO;
-import co.com.ppi.Street.models.entity.TipoColorEntity;
 import co.com.ppi.Street.models.entity.UsuarioSistemaEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -42,7 +42,7 @@ public class UsuarioSistemaService {
 	@ApiOperation(value = "/", notes = "Registra usuario sistema nuevo")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response registrarUsuarioSistema(RegistrarUsuarioInDTO registrarUsuario) {
+	public Response registrarUsuarioSistema(@Valid RegistrarUsuarioInDTO registrarUsuario) {
 		return this.usuarioSistemaManager.create(registrarUsuario);
 	}
 	
