@@ -16,7 +16,7 @@ public class DetalleProductoInDTO {
 	
 	private Long idTipoColor;
 	
-	private Integer idTipoGenero;
+	private Long idTipoGenero;
 	
 	private Long idProducto;
 	
@@ -68,14 +68,14 @@ public class DetalleProductoInDTO {
 	/**
 	 * @return the idTipoGenero
 	 */
-	public Integer getIdTipoGenero() {
+	public Long getIdTipoGenero() {
 		return idTipoGenero;
 	}
 
 	/**
 	 * @param idTipoGenero the idTipoGenero to set
 	 */
-	public void setIdTipoGenero(Integer idTipoGenero) {
+	public void setIdTipoGenero(Long idTipoGenero) {
 		this.idTipoGenero = idTipoGenero;
 	}
 

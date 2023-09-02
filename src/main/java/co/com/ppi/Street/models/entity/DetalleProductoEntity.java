@@ -26,7 +26,7 @@ public class DetalleProductoEntity {
 	private Long idProducto;
 
 	@Column(name = "ID_TIPO_GENERO")
-	private Integer idTipoGenero;
+	private Long idTipoGenero;
 
 	@Column(name = "CANTIDAD")
 	private Integer cantidad;
@@ -63,11 +63,11 @@ public class DetalleProductoEntity {
 		this.idProducto = idProducto;
 	}
 
-	public Integer getIdTipoGenero() {
+	public Long getIdTipoGenero() {
 		return idTipoGenero;
 	}
 
-	public void setIdTipoGenero(Integer idTipoGenero) {
+	public void setIdTipoGenero(Long idTipoGenero) {
 		this.idTipoGenero = idTipoGenero;
 	}
 
